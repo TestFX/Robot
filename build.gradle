@@ -1,0 +1,49 @@
+//-------------------------------------------------------------------------------------------------
+// ROOT PROJECT.
+//-------------------------------------------------------------------------------------------------
+
+// provide assemble and clean tasks.
+apply plugin: "base"
+
+// task to add gradle wrapper files.
+task("wrapper", type: Wrapper) {
+    gradleVersion = project.gradleVersion
+    distributionUrl = "https://services.gradle.org/distributions/" +
+        "gradle-${gradleVersion}-all.zip"
+}
+
+// task to print gradle and groovy versions.
+task("versions", group: "help").doLast {
+    println "Java version: ${System.properties["java.version"]}"
+    println "Gradle version: ${gradle.gradleVersion}"
+    println "Groovy version: ${GroovySystem.version}"
+}
+
+//-------------------------------------------------------------------------------------------------
+// EACH PROJECT.
+//-------------------------------------------------------------------------------------------------
+
+allprojects { project ->
+    // provide java configurations and tasks.
+    apply plugin: "java"
+
+    // task to create main and test source directories.
+    task("initSourceDirs", group: "build setup").doLast {
+        // ignore source directories for projects without source sets.
+        if (!project.hasProperty("sourceSets")) { return }
+
+        // list all source directories.
+        def sourceSets = project.sourceSets as SourceSetContainer
+        def sourceDirs = sourceSets*.allSource.srcDirs.flatten() as List<File>
+
+        // create source directories, for those who not exists.
+        sourceDirs.each { it.mkdirs() }
+    }
+    
+    // maven repositories for dependencies.
+    repositories {
+        if (project.hasProperty("useMavenLocal")) {
+            mavenLocal()
+        }
+    }
+}
