@@ -42,8 +42,6 @@ public class GlassRobotImpl implements GlassRobot {
     // METHODS.
     //---------------------------------------------------------------------------------------------
 
-    // ROBOT.
-
     @Override
     public void destroy() {
         internalRobot.destroy();
