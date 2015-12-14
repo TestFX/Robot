@@ -22,3 +22,14 @@ Scene robot:
 - `com.sun.javafx.robot.FXRobot`
 - `com.sun.javafx.robot.FXRobotFactory`
 - `com.sun.javafx.robot.FXRobotImage`
+
+
+### Ideas
+
+- The robots should be placed into `javafx.robot`?
+- The robots should be named `InputRobot` (`com.sun.glass`) and `EventRobot` (`com.sun.javafx`)?
+- Use a separate class for `Image` data and pixel `Buffer`s?
+- Robot interfaces should match `FXRobot` as close as possible?
+- Use `int`s for coordinates and dimensions?
+- Add flag for wait-for-idle functionality?
+- Factory methods in `javafx.application.Application` or separate factory classes?
