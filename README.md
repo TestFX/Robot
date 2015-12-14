@@ -33,3 +33,11 @@ Scene robot:
 - Use `int`s for coordinates and dimensions?
 - Add flag for wait-for-idle functionality?
 - Factory methods in `javafx.application.Application` or separate factory classes?
+
+
+### License
+
+OpenJDK and OpenJFX are licensed under the [GNU General Public License, version 2, with the
+Classpath Exception][GPL2+CE].
+
+[GPL2+CE]: http://openjdk.java.net/legal/gplv2+ce.html
